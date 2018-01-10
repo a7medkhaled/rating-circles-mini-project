@@ -1,0 +1,84 @@
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <style>
+  body {
+   font-family: Verdana;
+  }
+  h1, h2, h3 {
+   color: darkblue;
+  }
+  .rating-circle {
+   height: 2em;
+   width: 2em;
+   border: .1em solid black;
+   border-radius: 1.1em;
+   display: inline-block;
+   margin: 0;
+   padding: .1em;
+  
+  }
+
+  .rating-hover {
+   background-color: yellow;
+  }
+
+  .rating-chosen {
+   background-color: green;
+  }
+</style>
+
+</head>
+<body>
+
+<button type="button">Click!</button>
+ <h1>Contoso Web Developer Conference</h1>
+ <h2>Finding elements using jQuery</h2>
+ <div>This session is about identifying elements using jQuery methods and selectors.</div>
+ <h3>Rate this session</h3>
+ <div id="rating-container">
+  <div id="first_circle" class="rating-circle"></div>
+  <div id="second_circle" class="rating-circle"></div>
+  <div id="third_circle" class="rating-circle"></div>
+  <div id="fourth_circle" class="rating-circle"></div>
+  <div id="fifth_circle" class="rating-circle"></div>
+ </div>
+ 
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+ </script>
+
+ <script type="text/javascript" language="javascript">
+      $(document).ready(function() {
+     //the hover section 
+
+     $('.rating-circle').hover(
+      function(){
+        $('.rating-circle').removeClass('rating-chosen');
+        $(this).prevAll().andSelf().addClass('rating-hover');
+        $(this).nextAll().removeClass('rating-hover');
+      },
+      function(){
+        $('.rating-circle').removeClass('rating-hover');
+          if(index>=0){
+            var element = $('.rating-circle').get(index);
+           $(element).prevAll().andSelf().addClass('rating-chosen');
+       
+          };
+      }
+      );
+    //this is the click section
+    $('.rating-circle').click(
+        function(){
+          index = $(this).index();
+          $(this).prevAll().andSelf().addClass('rating-chosen');
+          $(this).nextAll().removeClass('rating-chosen');
+        }
+    );
+
+     });
+  </script>
+ 
+
+</body>
+</html>
